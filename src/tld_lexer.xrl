@@ -6,16 +6,19 @@ Whitespace = [\s\t]
 Terminator = \n|\r\n|\r
 
 Digit = [0-9]
-AlphaNum = [a-zA-Z]
-FormattingDelimiter = \\b
+Alphanum = [a-zA-Z]
+Formattingdelimiter = \b
+Underlinedelimiter
 
-AlphaNum  = {AlphaNum}
-BoldValue = {AlphaNum}{FormattingDelimiter}{AlphaNum}
+Alphanum  = {Alphanum}
+Boldvalue = {AlphaNum}{Formattingdelimiter}{AlphaNum}
 
 Rules.
 
 {Whitespace} : skip_token.
 {Terminator} : skip_token.
-{Bold} : {token, {int, TokenLine, TokenChars}}.
+{Formattingdelimiter} : {token, {delim, TokenLine, TokenChars}}.
+{Alphanum} : {token, {alpha, TokenLine, TokenChars}}.
+{Boldvalue} : {token, {int, TokenLine, TokenChars}}.
 
 Erlang code.
