@@ -1,0 +1,22 @@
+AWS()                                                                    AWS()
+
+
+
+N^HNA^HAM^HME^HE
+       aws -
+
+D^HDE^HES^HSC^HCR^HRI^HIP^HPT^HTI^HIO^HON^HN
+       The  AWS  Command  Line  Interface is a unified tool to manage your AWS
+       services.
+
+S^HSY^HYN^HNO^HOP^HPS^HSI^HIS^HS
+          aws [options] <command> <subcommand> [parameters]
+
+       Use _^Ha_^Hw_^Hs _^Hc_^Ho_^Hm_^Hm_^Ha_^Hn_^Hd _^Hh_^He_^Hl_^Hp for information on a  specific  command.  Use  _^Ha_^Hw_^Hs
+
+S^HSE^HEE^HE A^HAL^HLS^HSO^HO
+       +^Ho aws help topics
+
+
+
+                                                                         AWS()

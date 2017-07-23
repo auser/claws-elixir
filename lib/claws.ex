@@ -3,16 +3,4 @@ defmodule CLAWS do
   Documentation for CLAWS.
   """
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> CLAWS.hello
-      :world
-
-  """
-  def hello do
-    :world
-  end
 end
