@@ -1,6 +1,6 @@
 -module(tld_yex).
 -export([parse/1, parse_and_scan/1, format_error/1]).
--file("src/tld_yex.yrl", 17).
+-file("src/tld_yex.yrl", 19).
 
 
 -file("/usr/local/Cellar/erlang/19.3/lib/erlang/lib/parsetools-2.1.4/include/yeccpre.hrl", 0).
@@ -190,14 +190,18 @@ yeccpars2(0=S, Cat, Ss, Stack, T, Ts, Tzr) ->
 %%  yeccpars2_3(S, Cat, Ss, Stack, T, Ts, Tzr);
 yeccpars2(4=S, Cat, Ss, Stack, T, Ts, Tzr) ->
  yeccpars2_4(S, Cat, Ss, Stack, T, Ts, Tzr);
-%% yeccpars2(5=S, Cat, Ss, Stack, T, Ts, Tzr) ->
-%%  yeccpars2_5(S, Cat, Ss, Stack, T, Ts, Tzr);
+yeccpars2(5=S, Cat, Ss, Stack, T, Ts, Tzr) ->
+ yeccpars2_5(S, Cat, Ss, Stack, T, Ts, Tzr);
+%% yeccpars2(6=S, Cat, Ss, Stack, T, Ts, Tzr) ->
+%%  yeccpars2_6(S, Cat, Ss, Stack, T, Ts, Tzr);
 yeccpars2(Other, _, _, _, _, _, _) ->
  erlang:error({yecc_bug,"1.4",{missing_state_in_action_table, Other}}).
 
 -dialyzer({nowarn_function, yeccpars2_0/7}).
 yeccpars2_0(S, alphanum, Ss, Stack, T, Ts, Tzr) ->
  yeccpars1(S, 4, Ss, Stack, T, Ts, Tzr);
+yeccpars2_0(S, headingword, Ss, Stack, T, Ts, Tzr) ->
+ yeccpars1(S, 5, Ss, Stack, T, Ts, Tzr);
 yeccpars2_0(_, _, _, _, T, _, _) ->
  yeccerror(T).
 
@@ -206,6 +210,8 @@ yeccpars2_1(_S, Cat, Ss, Stack, T, Ts, Tzr) ->
 
 yeccpars2_2(S, alphanum, Ss, Stack, T, Ts, Tzr) ->
  yeccpars1(S, 4, Ss, Stack, T, Ts, Tzr);
+yeccpars2_2(S, headingword, Ss, Stack, T, Ts, Tzr) ->
+ yeccpars1(S, 5, Ss, Stack, T, Ts, Tzr);
 yeccpars2_2(_S, Cat, Ss, Stack, T, Ts, Tzr) ->
  yeccgoto_values(hd(Ss), Cat, Ss, Stack, T, Ts, Tzr).
 
@@ -220,8 +226,11 @@ yeccpars2_4(_S, Cat, Ss, Stack, T, Ts, Tzr) ->
  yeccgoto_value(hd(Ss), Cat, Ss, NewStack, T, Ts, Tzr).
 
 yeccpars2_5(_S, Cat, Ss, Stack, T, Ts, Tzr) ->
+ yeccgoto_value(hd(Ss), Cat, Ss, Stack, T, Ts, Tzr).
+
+yeccpars2_6(_S, Cat, Ss, Stack, T, Ts, Tzr) ->
  [_|Nss] = Ss,
- NewStack = yeccpars2_5_(Stack),
+ NewStack = yeccpars2_6_(Stack),
  yeccgoto_values(hd(Nss), Cat, Nss, NewStack, T, Ts, Tzr).
 
 -dialyzer({nowarn_function, yeccgoto_document/7}).
@@ -238,7 +247,7 @@ yeccgoto_value(2, Cat, Ss, Stack, T, Ts, Tzr) ->
 yeccgoto_values(0=_S, Cat, Ss, Stack, T, Ts, Tzr) ->
  yeccpars2_1(_S, Cat, Ss, Stack, T, Ts, Tzr);
 yeccgoto_values(2=_S, Cat, Ss, Stack, T, Ts, Tzr) ->
- yeccpars2_5(_S, Cat, Ss, Stack, T, Ts, Tzr).
+ yeccpars2_6(_S, Cat, Ss, Stack, T, Ts, Tzr).
 
 -compile({inline,yeccpars2_4_/1}).
 -file("src/tld_yex.yrl", 0).
@@ -248,13 +257,13 @@ yeccpars2_4_(__Stack0) ->
    '$undefined'
   end | __Stack].
 
--compile({inline,yeccpars2_5_/1}).
--file("src/tld_yex.yrl", 9).
-yeccpars2_5_(__Stack0) ->
+-compile({inline,yeccpars2_6_/1}).
+-file("src/tld_yex.yrl", 10).
+yeccpars2_6_(__Stack0) ->
  [__2,__1 | __Stack] = __Stack0,
  [begin
    __1 ++ __2
   end | __Stack].
 
 
--file("src/tld_yex.yrl", 19).
+-file("src/tld_yex.yrl", 21).
